@@ -2,11 +2,17 @@ const getDetail = employee => {
   details = {};
   switch (employee.getRole()) {
     case 'Manager':
-      return `Office number: ${employee.getOfficeNumber()}`
+      details.info = `Office number: ${employee.getOfficeNumber()}`;
+      details.icon = `fa-solid fa-mug-hot`;
+      return details
     case 'Engineer':
-      return `GitHub: <a href="https://github.com/${employee.getGithub()}" target="_blank">${employee.getGithub()}</a>`
+      details.info = `GitHub: <a href="https://github.com/${employee.getGithub()}" target="_blank">${employee.getGithub()}</a>`;
+      details.icon = `fa-solid fa-glasses`;
+      return details
     case 'Intern':
-      return `School: ${employee.getSchool()}`
+      details.info = `School: ${employee.getSchool()}`;
+      details.icon = `fa-solid fa-graduation-cap`;
+      return details;
   }
 }
 
@@ -17,15 +23,15 @@ const employeeCards = employees => {
       ${employees
       .map((employee) => {
         return `
-          <div class="card shadow mb-5 rounded bg-light-grey m-3">
+          <div class="card shadow rounded bg-light-grey m-2">
             <div class="card-header bg-primary text-white">
               <h5>${employee.getName()}</h5>
-              <i class="fa-solid fa-mug-hot"></i><span class="m-2 role">${employee.getRol()}</span>
+              <i class="${getDetail(employee).icon}"></i><span class="m-2 role">${employee.getRole()}</span>
             </div>
             <ul class="list-group list-group-flush p-4">
               <li class="list-group-item">ID: ${employee.getId()}</li>
               <li class="list-group-item">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
-              <li class="list-group-item">${getDetail(employee)}</li>
+              <li class="list-group-item">${getDetail(employee).info}</li>
             </ul>
           </div>
         `})
