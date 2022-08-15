@@ -1,4 +1,5 @@
-const getDetail = employee => {
+// generate employee info and icon
+const generateDetail = employee => {
   details = {};
   switch (employee.getRole()) {
     case 'Manager':
@@ -16,34 +17,33 @@ const getDetail = employee => {
   }
 }
 
+// generate employee cards
 const employeeCards = employees => {
   let detail;
   return `
-    <main class="container my-5 d-flex flex-wrap justify-content-center">
-      ${employees
-      .map((employee) => {
-        return `
-          <div class="card shadow rounded bg-light-grey m-2">
-            <div class="card-header bg-primary text-white">
-              <h5>${employee.getName()}</h5>
-              <i class="${getDetail(employee).icon}"></i><span class="m-2 role">${employee.getRole()}</span>
-            </div>
-            <ul class="list-group list-group-flush p-4">
-              <li class="list-group-item">ID: ${employee.getId()}</li>
-              <li class="list-group-item">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
-              <li class="list-group-item">${getDetail(employee).info}</li>
-            </ul>
+      <main class="container my-5 d-flex flex-wrap justify-content-center">
+        ${employees
+        .map((employee) => {
+          return `
+        <div class="card shadow rounded bg-light-grey m-2">
+          <div class="card-header bg-primary text-white">
+            <h5>${employee.getName()}</h5>
+            <i class="${generateDetail(employee).icon}"></i><span class="m-2 role">${employee.getRole()}</span>
           </div>
-        `})
-      .join('')}
-    </main>
+          <ul class="list-group list-group-flush p-4">
+            <li class="list-group-item">ID: ${employee.getId()}</li>
+            <li class="list-group-item">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
+            <li class="list-group-item">${generateDetail(employee).info}</li>
+          </ul>
+        </div>
+          `})
+        .join('')}
+      </main>
   `;
 }
 
+// generate main html and sections
 module.exports = templateData => {
-
-  // destructure page data by section
-  // const { employee, ...detail } = templateData;
   const employees = templateData;
   return `
   <!DOCTYPE html>
@@ -63,8 +63,10 @@ module.exports = templateData => {
         <h2>My Team</h2>
       </div>
     </header>
-      ${employeeCards(employees)}
-    </main>
+
+    <!-- main section -->
+    ${employeeCards(employees)}
+    
   </body>
   </html>
   `;

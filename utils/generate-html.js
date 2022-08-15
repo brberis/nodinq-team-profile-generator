@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+// write html content and save file into dist directory
 const writeFile = fileContent => {
   return new Promise((resolve, reject) => {
       fs.writeFile('./dist/index.html', fileContent, err => {
