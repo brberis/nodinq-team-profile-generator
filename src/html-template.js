@@ -1,29 +1,44 @@
-const employeeCards = employees => {
-  employees.map((employee) => {
-    if (employee.getRole() === 'Manager') {
-      // let detail = `Office number = ${employee.getOfficeNumber}`
-    }
-  return `
-    <div class="card shadow mb-5 rounded bg-light-grey m-3">
-      <div class="card-header bg-primary text-white">
-        <h5>Featured</h5>
-        <i class="fa-solid fa-mug-hot"></i><span class="m-2 role">Manager</span>
-      </div>
-      <ul class="list-group list-group-flush p-4">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-    </div>
-    `})
-    .join('')
+const getDetail = employee => {
+  details = {};
+  switch (employee.getRole()) {
+    case 'Manager':
+      return `Office number: ${employee.getOfficeNumber()}`
+    case 'Engineer':
+      return `GitHub: <a href="https://github.com/${employee.getGithub()}" target="_blank">${employee.getGithub()}</a>`
+    case 'Intern':
+      return `School: ${employee.getSchool()}`
   }
+}
+
+const employeeCards = employees => {
+  let detail;
+  return `
+    <main class="container my-5 d-flex flex-wrap justify-content-center">
+      ${employees
+      .map((employee) => {
+        return `
+          <div class="card shadow mb-5 rounded bg-light-grey m-3">
+            <div class="card-header bg-primary text-white">
+              <h5>${employee.getName()}</h5>
+              <i class="fa-solid fa-mug-hot"></i><span class="m-2 role">${employee.getRol()}</span>
+            </div>
+            <ul class="list-group list-group-flush p-4">
+              <li class="list-group-item">ID: ${employee.getId()}</li>
+              <li class="list-group-item">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
+              <li class="list-group-item">${getDetail(employee)}</li>
+            </ul>
+          </div>
+        `})
+      .join('')}
+    </main>
+  `;
+}
 
 module.exports = templateData => {
+
   // destructure page data by section
   // const { employee, ...detail } = templateData;
   const employees = templateData;
-
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -42,7 +57,6 @@ module.exports = templateData => {
         <h2>My Team</h2>
       </div>
     </header>
-    <main class="container my-5 d-flex flex-wrap justify-content-center">
       ${employeeCards(employees)}
     </main>
   </body>

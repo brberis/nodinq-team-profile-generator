@@ -15,4 +15,9 @@ test("gets manager's rol", () => {
   expect(manager.getRole()).toEqual(expect.stringContaining('Manager'));
 });
 
+test("gets manager's office number", () => {
+  const manager = new Manager('John', 1, 'some@email.com', 1);
+  expect(manager.getOfficeNumber()).toEqual(expect.any(Number));
+});
+
 
