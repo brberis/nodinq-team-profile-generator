@@ -33,7 +33,10 @@ This project require NodeJS and Inquirer. To install clone the repository and ru
 
 Use `node index.js` to start. Follow the prompts and finally the file will be generated in the folder /dist .
 
-![alt usage](https://github.com/brberis/nodinq-team-generator/assets/images/screenshot.png)
+### Watch this video
+
+[![Watch the video](https://github.com/brberis/nodinq-team-profile-generator/blob/main/assets/images/video.png?raw=true))]
+(https://drive.google.com/file/d/1YQhlf3gCD3PBKByw9x2vzD1R_se6wdZg/view)
 
 ## Features
 
