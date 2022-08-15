@@ -14,7 +14,7 @@ The application was developed using OOP and TDD using last ES6 features.
 
 ## Screenshot
 
-![alt screenshot](https://github.com/brberis/nodinq-team-generator/assets/images/web.png)
+![alt screenshot](https://github.com/brberis/nodinq-team-profile-generator/blob/main/assets/images/web.png?raw=true)
 
 ## Table of Contents
 
